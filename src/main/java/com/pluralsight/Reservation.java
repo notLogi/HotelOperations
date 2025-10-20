@@ -42,10 +42,11 @@ public class Reservation {
     }
 
     public double getReservationTotal(){
+        double totalPrice = price * numberOfNights;
         if(isWeekend()){
-            price *= 1.10;
+            totalPrice *= 1.10;
         }
-        return price;
+        return totalPrice;
     }
 
     @Override

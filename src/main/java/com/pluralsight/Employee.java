@@ -55,7 +55,7 @@ public class Employee {
     }
 
     public double getTotalPay(){
-        return ((int) getPayRate()) * hoursWorked;
+        return getPayRate() * getRegularHours() + getOvertimeHours() * getPayRate() * 1.5;
     }
 
     public int getRegularHours(){

@@ -8,5 +8,7 @@ public class Main {
         System.out.println(reservation.toString());
         Employee employee = new Employee(12424, "Robert", "IT", 23.50, 45);
         System.out.println(employee.toString());
+        Employee employee2 = new Employee(12424, "Robert", "IT", 23.50, 8);
+        System.out.println(employee2.toString());
     }
 }
