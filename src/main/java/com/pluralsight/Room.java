@@ -5,14 +5,12 @@ public class Room {
     private double price;
     private boolean occupied;
     private boolean dirty;
-    private boolean available;
 
-    public Room(double price, int beds, boolean occupied, boolean dirty, boolean available) {
+    public Room(double price, int beds, boolean occupied, boolean dirty) {
         this.price = price;
         this.beds = beds;
-        this.occupied = occupied;
-        this.dirty = dirty;
-        this.available = available;
+        this.occupied = false;
+        this.dirty = false;
     }
 
     public int getBeds() {
@@ -32,7 +30,7 @@ public class Room {
     }
 
     public boolean isAvailable() {
-        return available;
+        return !isDirty() && !isOccupied();
     }
 
     public void setBeds(int beds) {
@@ -50,11 +48,6 @@ public class Room {
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
-
     @Override
     public String toString() {
         return "Room{" +
@@ -62,7 +55,6 @@ public class Room {
                 ", price=" + price +
                 ", occupied=" + occupied +
                 ", dirty=" + dirty +
-                ", available=" + available +
                 '}';
     }
 }
