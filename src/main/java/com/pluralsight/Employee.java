@@ -91,6 +91,20 @@ public class Employee {
         System.out.println("punched out: " + time);
     }
 
+    public void punchTimeCard(LocalTime time){
+        if(this.time == time || this.time == null){
+            this.time = time;
+            System.out.println("punched in: " + time);
+        }
+        else{
+            LocalTime totalTime;
+            totalTime = time.minusHours(this.time.getHour());
+            hoursWorked += totalTime.getHour();
+            System.out.println("punched out: " + time);
+            this.time = null;
+        }
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

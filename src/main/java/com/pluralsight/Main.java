@@ -14,8 +14,8 @@ public class Main {
         Employee employee2 = new Employee(12424, "Robert", "IT", 23.50, 8);
         System.out.println(employee2.toString());
 
-        employee2.punchIn(LocalTime.parse("01:23:23"));
-        employee2.punchOut(LocalTime.parse("07:43:23"));
+        employee2.punchTimeCard(LocalTime.parse("01:23:23"));
+        employee2.punchTimeCard(LocalTime.parse("07:43:23"));
         System.out.println("Hours worked: " + employee2.getHoursWorked());
 
     }
