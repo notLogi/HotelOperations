@@ -105,6 +105,18 @@ public class Employee {
         }
     }
 
+    public void punchIn(){
+        time = LocalTime.now();
+        System.out.println("punched in at: " + time);
+    }
+
+    public void punchOut(){
+        LocalTime timeNow = LocalTime.now();
+        hoursWorked += timeNow.minusHours(time.getHour()).getHour();
+        System.out.println("punched out: " + timeNow);
+        time = null;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
