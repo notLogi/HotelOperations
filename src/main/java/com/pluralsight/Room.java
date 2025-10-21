@@ -48,6 +48,24 @@ public class Room {
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
     }
+
+    public void checkIn(){
+        if(isAvailable()){
+            setOccupied(true);
+            setDirty(true);
+            System.out.println("checked in");
+        }
+    }
+    public void checkOut(){
+        setOccupied(false);
+        System.out.println("checked out");
+    }
+
+    public void cleanRoom(){
+        System.out.println("Room is getting cleaned out");
+        setDirty(false);
+    }
+
     @Override
     public String toString() {
         return "Room{" +

@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+
+import java.time.LocalTime;
+
 public class Main {
     public static void main(String[] args) {
         Room myRoom = new Room(200, 2, true, false);
@@ -10,5 +13,10 @@ public class Main {
         System.out.println(employee.toString());
         Employee employee2 = new Employee(12424, "Robert", "IT", 23.50, 8);
         System.out.println(employee2.toString());
+
+        employee2.punchIn(LocalTime.parse("01:23:23"));
+        employee2.punchOut(LocalTime.parse("07:43:23"));
+        System.out.println("Hours worked: " + employee2.getHoursWorked());
+
     }
 }
