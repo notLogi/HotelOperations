@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
-        Room myRoom = new Room(200, 2, true, false);
+        Room myRoom = new Room(200, 2);
         System.out.println(myRoom.toString());
         Reservation reservation = new Reservation(true, 3, "king");
         System.out.println(reservation.toString());
@@ -14,8 +14,8 @@ public class Main {
         Employee employee2 = new Employee(12424, "Robert", "IT", 23.50, 8);
         System.out.println(employee2.toString());
 
-        employee2.punchTimeCard(LocalTime.parse("01:23:23"));
-        employee2.punchTimeCard(LocalTime.parse("07:43:23"));
+        employee2.punchTimeCard(15.23);
+        employee2.punchTimeCard(17.42);
         System.out.println("Hours worked: " + employee2.getHoursWorked());
 
     }

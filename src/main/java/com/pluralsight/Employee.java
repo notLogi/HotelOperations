@@ -8,15 +8,19 @@ public class Employee {
     private String name;
     private String department;
     private double payRate;
-    private int hoursWorked;
-    private LocalTime time;
+    private double hoursWorked;
+    private double time;
 
-    Employee(int employeeId, String name, String department, double payRate, int hoursWorked){
+    Employee(int employeeId, String name, String department, double payRate, double hoursWorked){
         this.employeeId = employeeId;
         this.name = name;
         this.department = department;
         this.payRate = payRate;
         this.hoursWorked = hoursWorked;
+    }
+
+    public double getTime(){
+        return time;
     }
 
     public int getEmployeeId() {
@@ -34,7 +38,7 @@ public class Employee {
         return payRate;
     }
 
-    public int getHoursWorked(){
+    public double getHoursWorked(){
         return hoursWorked;
     }
 
@@ -62,7 +66,7 @@ public class Employee {
         return getPayRate() * getRegularHours() + getOvertimeHours() * getPayRate() * 1.5;
     }
 
-    public int getRegularHours(){
+    public double getRegularHours(){
         if(hoursWorked >= 40){
             return 40;
         }
@@ -72,49 +76,51 @@ public class Employee {
         return 0;
     }
 
-    public int getOvertimeHours(){
+    public double getOvertimeHours(){
         if(hoursWorked > 40){
             return hoursWorked - 40;
         }
         return 0;
     }
 
-    public void punchIn(LocalTime time){
+    public void punchIn(double time) {
         this.time = time;
-        System.out.println("punched in:" + time);
     }
 
-    public void punchOut(LocalTime time) {
-        LocalTime totalTime;
-        totalTime = time.minusHours(this.time.getHour());
-        hoursWorked += totalTime.getHour();
-        System.out.println("punched out: " + time);
+    public void punchOut(double time) {
+        double duration = time - this.time;
+        hoursWorked += duration;
+        this.time = 0;
     }
 
-    public void punchTimeCard(LocalTime time){
-        if(this.time == time || this.time == null){
+
+    public void punchTimeCard(double time) {
+        if (time == 0) {
             this.time = time;
-            System.out.println("punched in: " + time);
-        }
-        else{
-            LocalTime totalTime;
-            totalTime = time.minusHours(this.time.getHour());
-            hoursWorked += totalTime.getHour();
-            System.out.println("punched out: " + time);
-            this.time = null;
+        } else {
+            double duration = this.time - time;
+            hoursWorked += duration;
+            this.time = 0;
         }
     }
+
 
     public void punchIn(){
-        time = LocalTime.now();
+        LocalTime startTime = LocalTime.now();
+        int hour = startTime.getHour();
+        int minute = startTime.getMinute();
+        time = hour + (minute / 60.0);
         System.out.println("punched in at: " + time);
     }
 
-    public void punchOut(){
-        LocalTime timeNow = LocalTime.now();
-        hoursWorked += timeNow.minusHours(time.getHour()).getHour();
-        System.out.println("punched out: " + timeNow);
-        time = null;
+    public void punchOut() {
+        LocalTime now = LocalTime.now();
+        int hour = now.getHour();
+        int minute = now.getMinute();
+        double time2 = hour + (minute / 60.0);
+        double duration = time2 - time;
+        hoursWorked += duration;
+        time = 0;
     }
 
     @Override
